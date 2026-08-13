@@ -29,7 +29,7 @@ Rather than building a simple CRUD application, Orion DNS simulates real-world c
 
 ### Frontend (Vercel)
 
-https://YOUR-VERCEL-URL.vercel.app
+[https://YOUR-VERCEL-URL.vercel.app](https://orion-lyart-phi.vercel.app/)
 
 ### Backend API (Render)
 
