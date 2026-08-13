@@ -1,56 +1,149 @@
-# Orion DNS Manager
+# Orion DNS
 
-A Route53-inspired DNS Management Platform built from scratch using FastAPI, Next.js 15, SQLite, TypeScript, and Shadcn UI.
+A production-ready DNS Management Platform inspired by AWS Route 53, built using FastAPI, Next.js, SQLite, and ShadCN UI.
 
----
-
-## Project Vision
-
-Most DNS projects stop at simple CRUD operations.
-
-Orion DNS Manager was built with a different objective:
-
-To recreate the workflow, architecture, and user experience of a cloud DNS management platform while maintaining a clean full-stack design.
-
-The focus was not only on managing records, but also on resource hierarchy, authentication, search, pagination, health monitoring, and cloud-style navigation patterns similar to real infrastructure management systems.
+Orion DNS enables users to create and manage hosted zones, configure DNS records, monitor endpoint health, and visualize DNS infrastructure through a modern cloud-native interface.
 
 ---
 
-## Architecture
+## Why Orion DNS?
+
+DNS is one of the most critical services powering the modern internet. Every application, website, API, and cloud service depends on reliable DNS infrastructure.
+
+Orion DNS was built as a functional Route53-inspired platform to explore how DNS systems work behind the scenes while providing a complete full-stack cloud application experience.
+
+This project demonstrates:
+
+- REST API Design
+- Database Modeling
+- Frontend-Backend Integration
+- Cloud Deployment
+- DNS Infrastructure Concepts
+- Production-Ready Architecture
+
+Rather than building a simple CRUD application, Orion DNS simulates real-world cloud DNS workflows similar to AWS Route 53.
+
+---
+
+## Live Deployment
+
+### Frontend (Vercel)
+
+https://YOUR-VERCEL-URL.vercel.app
+
+### Backend API (Render)
+
+https://orion-api-e0cc.onrender.com
+
+### Swagger Documentation
+
+https://orion-api-e0cc.onrender.com/docs
+
+---
+
+## Features
+
+### Hosted Zone Management
+
+- Create Hosted Zones
+- Update Hosted Zones
+- Delete Hosted Zones
+- Search Hosted Zones
+- Zone Details View
+- Record Count Tracking
+
+### DNS Record Management
+
+- Create DNS Records
+- Update DNS Records
+- Delete DNS Records
+- Search DNS Records
+- TTL Configuration
+
+Supported Record Types:
+
+- A
+- AAAA
+- CNAME
+- TXT
+- MX
+- NS
+- PTR
+- SRV
+- CAA
+
+### Dashboard
+
+- Infrastructure Overview
+- Total Hosted Zones
+- Total DNS Records
+- Total Health Checks
+- Real-Time Statistics
+
+### Health Checks
+
+- Create Health Checks
+- Monitor Endpoint Availability
+- Health Status Tracking
+- Health Check Management
+
+### Authentication
+
+- Login Page
+- Protected Routes
+- Session-Based Access
+
+### User Experience
+
+- Responsive Design
+- Modern Dashboard
+- AWS Route53-Inspired Layout
+- Search & Filtering
+- Notifications & Alerts
+- Sidebar Navigation
+
+---
+
+## System Architecture
 
 ```text
-┌─────────────────────┐
-│     Next.js 15      │
-│   TypeScript UI     │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│      FastAPI        │
-│   REST Endpoints    │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│    SQLAlchemy ORM   │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│      SQLite DB      │
-└─────────────────────┘
+                        ┌─────────────────┐
+                        │     User        │
+                        └────────┬────────┘
+                                 │
+                                 ▼
+                  ┌──────────────────────────┐
+                  │     Next.js Frontend     │
+                  │        (Vercel)          │
+                  └──────────┬───────────────┘
+                             │
+                             ▼
+                  ┌──────────────────────────┐
+                  │      FastAPI Backend     │
+                  │        (Render)          │
+                  └──────────┬───────────────┘
+                             │
+                             ▼
+                  ┌──────────────────────────┐
+                  │      SQLAlchemy ORM      │
+                  └──────────┬───────────────┘
+                             │
+                             ▼
+                  ┌──────────────────────────┐
+                  │      SQLite Database     │
+                  └──────────────────────────┘
 ```
 
 ---
 
-## Technology Stack
+## Tech Stack
 
 ### Frontend
 
 - Next.js 15
 - TypeScript
 - Tailwind CSS
-- Shadcn UI
+- ShadCN UI
 - Axios
 
 ### Backend
@@ -60,74 +153,16 @@ The focus was not only on managing records, but also on resource hierarchy, auth
 - SQLite
 - Pydantic
 
+### Deployment
+
+- Vercel
+- Render
+
 ### Development Tools
 
 - Git
 - GitHub
-- Swagger UI
 - VS Code
-
----
-
-## Core Features
-
-### Hosted Zone Management
-
-- Create Hosted Zones
-- Edit Hosted Zones
-- Delete Hosted Zones
-- View Hosted Zones
-- Search Hosted Zones
-- Pagination Support
-- Zone Statistics
-
-### DNS Record Management
-
-- Create DNS Records
-- View DNS Records
-- Delete DNS Records
-- TTL Configuration
-- Record Validation
-- Zone-based Record Isolation
-
-### Platform Features
-
-- Authentication System
-- Protected Routes
-- Dashboard Overview
-- Sidebar Navigation
-- Search & Filtering
-- Pagination
-- Health Checks Module
-- Traffic Policies Module
-- Resolver Module
-- Profiles Module
-
----
-
-## Resource Model
-
-### Hosted Zone
-
-```text
-Hosted Zone
-├── ID
-├── Domain Name
-├── Description
-├── Record Count
-└── Created Timestamp
-```
-
-### DNS Record
-
-```text
-DNS Record
-├── Name
-├── Type
-├── Value
-├── TTL
-└── Hosted Zone ID
-```
 
 ---
 
@@ -137,25 +172,40 @@ DNS Record
 
 | Method | Endpoint |
 |----------|----------|
-| GET | /hosted-zones |
-| POST | /hosted-zones |
-| PUT | /hosted-zones/{id} |
-| DELETE | /hosted-zones/{id} |
+| GET | `/hosted-zones/` |
+| GET | `/hosted-zones/{id}` |
+| POST | `/hosted-zones/` |
+| PUT | `/hosted-zones/{id}` |
+| DELETE | `/hosted-zones/{id}` |
+
+---
 
 ### DNS Records
 
 | Method | Endpoint |
 |----------|----------|
-| GET | /records/zone/{zone_id} |
-| POST | /records/{zone_id} |
-| DELETE | /records/{record_id} |
+| GET | `/records/zone/{zone_id}` |
+| POST | `/records/{zone_id}` |
+| PUT | `/records/{record_id}` |
+| DELETE | `/records/{record_id}` |
+
+---
+
+### Dashboard
+
+| Method | Endpoint |
+|----------|----------|
+| GET | `/dashboard/stats` |
+
+---
 
 ### Health Checks
 
 | Method | Endpoint |
 |----------|----------|
-| GET | /health-checks |
-| POST | /health-checks |
+| GET | `/health-checks/` |
+| POST | `/health-checks/` |
+| DELETE | `/health-checks/{id}` |
 
 ---
 
@@ -165,27 +215,31 @@ DNS Record
 orion/
 │
 ├── backend/
+│   │
 │   ├── app/
+│   │   ├── database.py
 │   │   ├── models/
 │   │   ├── routers/
 │   │   ├── schemas/
-│   │   ├── database.py
-│   │   └── main.py
+│   │   └── utils/
 │   │
+│   ├── requirements.txt
 │   └── run.py
 │
 ├── frontend/
+│   │
 │   ├── app/
-│   │   ├── page.tsx
 │   │   ├── dashboard/
-│   │   ├── zone/
 │   │   ├── health-checks/
+│   │   ├── login/
 │   │   ├── resolver/
-│   │   ├── profiles/
-│   │   └── traffic-policies/
+│   │   ├── traffic-policies/
+│   │   ├── zone/
+│   │   └── page.tsx
 │   │
 │   ├── components/
 │   ├── lib/
+│   ├── public/
 │   └── package.json
 │
 └── README.md
@@ -193,97 +247,71 @@ orion/
 
 ---
 
-## Current Implementation Status
+## Screenshots
 
-| Module | Status |
-|----------|----------|
-| Authentication | Complete |
-| Hosted Zone CRUD | Complete |
-| DNS Record CRUD | Complete |
-| Search | Complete |
-| Pagination | Complete |
-| Dashboard | Complete |
-| Sidebar Navigation | Complete |
-| Health Checks | Complete |
-| Traffic Policies | Complete |
-| Resolver | Complete |
-| Profiles | Complete |
+### Login
 
----
+![Login](./frontend/public/screenshots/login.png)
 
-## Engineering Decisions
+### Dashboard
 
-### Why FastAPI?
+![Dashboard](./frontend/public/screenshots/dashboard.png)
 
-- Automatic API documentation
-- Strong validation through Pydantic
-- Excellent performance
-- Clean router architecture
+### Hosted Zones
 
-### Why Next.js?
+![Hosted Zones](./frontend/public/screenshots/hosted-zones.png)
 
-- Modern App Router architecture
-- Excellent TypeScript support
-- Component-based design
-- Production-ready routing
+### DNS Records
 
-### Why SQLite?
+![DNS Records](./frontend/public/screenshots/zone-details.png)
 
-For this stage of development the priority was application architecture and functionality.
+### Health Checks
 
-The database layer is abstracted through SQLAlchemy, making migration to PostgreSQL straightforward in future iterations.
-
----
-
-## Design Principles
-
-The project was built around four key ideas:
-
-### Resource-Oriented Design
-
-Hosted Zones and DNS Records are treated as infrastructure resources rather than simple database entries.
-
-### Separation of Concerns
-
-Frontend, API, validation, database models, and business logic remain isolated and maintainable.
-
-### Cloud-Inspired UX
-
-Navigation, resource hierarchy, management workflows, and dashboard patterns are inspired by real cloud control planes.
-
-### Scalability First
-
-The architecture allows future migration to PostgreSQL, Redis, background workers, and containerized deployment with minimal structural changes.
+![Health Checks](./frontend/public/screenshots/health-checks.png)
 
 ---
 
 ## Running Locally
 
-### Backend
+### Clone Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/Orion.git
+
+cd Orion
+```
+
+---
+
+### Backend Setup
 
 ```bash
 cd backend
 
+python -m venv venv
+
 source venv/bin/activate
+
+pip install -r requirements.txt
 
 python run.py
 ```
 
-Backend:
+Backend runs on:
 
 ```text
-http://127.0.0.1:8000
+http://localhost:8000
 ```
 
 Swagger Documentation:
 
 ```text
-http://127.0.0.1:8000/docs
+http://localhost:8000/docs
 ```
 
 ---
 
-### Frontend
+### Frontend Setup
 
 ```bash
 cd frontend
@@ -293,7 +321,7 @@ npm install
 npm run dev
 ```
 
-Frontend:
+Frontend runs on:
 
 ```text
 http://localhost:3000
@@ -301,42 +329,94 @@ http://localhost:3000
 
 ---
 
-## Future Enhancements
+## Deployment
 
-- DNS Record Editing
-- Advanced Record Types
-- User Role Management
-- PostgreSQL Migration
-- Redis Caching
-- Audit Logs
-- Route Analytics
-- Monitoring Dashboard
-- Terraform-style Export
-- Container Deployment
+### Frontend
+
+Hosted on Vercel
+
+```text
+https://YOUR-VERCEL-URL.vercel.app
+```
+
+### Backend
+
+Hosted on Render
+
+```text
+https://orion-api-e0cc.onrender.com
+```
+
+### API Documentation
+
+```text
+https://orion-api-e0cc.onrender.com/docs
+```
 
 ---
 
-## Key Learnings
+## Project Status
 
-Building Orion required solving challenges across:
+### Current Version
 
-- API Design
-- Database Modeling
+```text
+v1.0.0
+```
+
+### Completed
+
+- Hosted Zone CRUD
+- DNS Record CRUD
+- Health Checks
+- Dashboard APIs
 - Authentication
-- Resource Relationships
-- State Management
-- Search & Pagination
-- Full-Stack Integration
-- Cloud Service User Experience
+- Frontend Deployment
+- Backend Deployment
+- API Documentation
+- Search & Filtering
+- Route53-Inspired UI
 
-The project was ultimately an exercise in designing a cloud-inspired infrastructure management platform rather than a traditional CRUD application.
+### Planned Enhancements
+
+- Traffic Policies
+- Resolver Rules
+- Advanced Routing Strategies
+- Role-Based Access Control
+- Analytics Dashboard
+- Audit Logs
+- Monitoring & Metrics
+
+---
+
+## Learning Outcomes
+
+This project helped explore:
+
+- FastAPI Backend Development
+- SQLAlchemy ORM
+- REST API Design
+- Frontend Architecture with Next.js
+- ShadCN UI Components
+- Database Relationships
+- Cloud Deployment Workflows
+- DNS Infrastructure Concepts
+- Full-Stack System Design
 
 ---
 
 ## Author
 
-**Koppisetti Gnana Vishnu**
+### Koppisetti Gnana Vishnu
 
-B.Tech Computer Science & Engineering
+B.Tech Computer Science Engineering
 
-FastAPI • Next.js • TypeScript • SQLAlchemy • SQLite
+GitHub:
+https://github.com/KoppisettiGnanaVishnu
+
+---
+
+## Acknowledgements
+
+Inspired by AWS Route 53 and modern cloud infrastructure management platforms.
+
+Built as a full-stack engineering project to understand DNS systems, scalable API design, and production deployment workflows.
