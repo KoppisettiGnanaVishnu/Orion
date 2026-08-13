@@ -336,7 +336,7 @@ http://localhost:3000
 Hosted on Vercel
 
 ```text
-https://YOUR-VERCEL-URL.vercel.app
+https://orion-lyart-phi.vercel.app/
 ```
 
 ### Backend
