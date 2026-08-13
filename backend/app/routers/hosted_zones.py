@@ -19,8 +19,24 @@ router = APIRouter(
 
 
 @router.get("/", response_model=list[HostedZoneResponse])
-def get_hosted_zones(db: Session = Depends(get_db)):
-    return db.query(HostedZone).all()
+def get_hosted_zones(
+    db: Session = Depends(get_db)
+):
+    zones = db.query(HostedZone).all()
+
+    response = []
+
+    for zone in zones:
+        response.append(
+            HostedZoneResponse(
+                id=zone.id,
+                name=zone.name,
+                comment=zone.comment,
+                record_count=len(zone.records)
+            )
+        )
+
+    return response
 
 
 @router.post("/", response_model=HostedZoneResponse)

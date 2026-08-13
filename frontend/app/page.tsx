@@ -1,6 +1,7 @@
 "use client";
-import Link from "next/link";
+
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import api from "@/lib/api";
 
 import { Button } from "@/components/ui/button";
@@ -25,12 +26,18 @@ type HostedZone = {
   id: number;
   name: string;
   comment: string;
+  record_count: number;
 };
 
 export default function Home() {
   const [zones, setZones] = useState<HostedZone[]>([]);
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
+
+  const totalRecords = zones.reduce(
+    (sum, zone) => sum + zone.record_count,
+    0
+  );
 
   const fetchZones = async () => {
     try {
@@ -76,16 +83,59 @@ export default function Home() {
 
   return (
     <div className="container mx-auto max-w-6xl py-10 px-4">
-      <h1 className="text-4xl font-bold mb-8">
-        Orion DNS Manager
-      </h1>
 
+      {/* Header */}
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-4xl font-bold">
+          Orion DNS Manager
+        </h1>
+
+        <div className="text-sm text-muted-foreground">
+          AWS Route53 Clone
+        </div>
+      </div>
+
+      {/* Stats Cards */}
+      <div className="grid grid-cols-2 gap-4 mb-8">
+
+        <Card>
+          <CardHeader>
+            <CardTitle>
+              Hosted Zones
+            </CardTitle>
+          </CardHeader>
+
+          <CardContent>
+            <div className="text-3xl font-bold">
+              {zones.length}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>
+              DNS Records
+            </CardTitle>
+          </CardHeader>
+
+          <CardContent>
+            <div className="text-3xl font-bold">
+              {totalRecords}
+            </div>
+          </CardContent>
+        </Card>
+
+      </div>
+
+      {/* Create Hosted Zone */}
       <Card>
         <CardHeader>
           <CardTitle>Create Hosted Zone</CardTitle>
         </CardHeader>
 
         <CardContent className="space-y-4">
+
           <input
             className="border rounded-md p-2 w-full"
             placeholder="Domain Name"
@@ -103,16 +153,23 @@ export default function Home() {
           <Button onClick={createZone}>
             Create Zone
           </Button>
+
         </CardContent>
       </Card>
 
+      {/* Hosted Zones Table */}
       <Card className="mt-8">
+
         <CardHeader>
-          <CardTitle>Hosted Zones</CardTitle>
+          <CardTitle>
+            Hosted Zones
+          </CardTitle>
         </CardHeader>
 
         <CardContent>
+
           <Table>
+
             <TableHeader>
               <TableRow>
                 <TableHead>Domain Name</TableHead>
@@ -123,6 +180,7 @@ export default function Home() {
             </TableHeader>
 
             <TableBody>
+
               {zones.length === 0 ? (
                 <TableRow>
                   <TableCell
@@ -135,6 +193,7 @@ export default function Home() {
               ) : (
                 zones.map((zone) => (
                   <TableRow key={zone.id}>
+
                     <TableCell className="font-medium">
                       {zone.name}
                     </TableCell>
@@ -144,32 +203,44 @@ export default function Home() {
                     </TableCell>
 
                     <TableCell>
-                      0
+                      {zone.record_count}
                     </TableCell>
 
                     <TableCell>
-  <div className="flex gap-2">
-    <Link href={`/zone/${zone.id}`}>
-      <Button variant="outline">
-        Manage
-      </Button>
-    </Link>
 
-    <Button
-      variant="destructive"
-      onClick={() => deleteZone(zone.id)}
-    >
-      Delete
-    </Button>
-  </div>
-</TableCell>
+                      <div className="flex gap-2">
+
+                        <Link href={`/zone/${zone.id}`}>
+                          <Button variant="outline">
+                            Manage
+                          </Button>
+                        </Link>
+
+                        <Button
+                          variant="destructive"
+                          onClick={() =>
+                            deleteZone(zone.id)
+                          }
+                        >
+                          Delete
+                        </Button>
+
+                      </div>
+
+                    </TableCell>
+
                   </TableRow>
                 ))
               )}
+
             </TableBody>
+
           </Table>
+
         </CardContent>
+
       </Card>
+
     </div>
   );
 }
