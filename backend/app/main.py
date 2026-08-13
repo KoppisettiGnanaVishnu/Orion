@@ -10,10 +10,13 @@ from app.models import DNSRecord
 
 from app.routers.hosted_zones import router as hosted_zone_router
 from app.routers.dns_records import router as dns_record_router
+from app.routers.dashboard import router as dashboard_router
+from app.routers import health_checks
 
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
+
 
 # FastAPI app
 app = FastAPI(
@@ -25,8 +28,9 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000",
-    ],
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -35,6 +39,12 @@ app.add_middleware(
 # Routers
 app.include_router(hosted_zone_router)
 app.include_router(dns_record_router)
+app.include_router(
+    dashboard_router
+)
+app.include_router(
+    health_checks.router
+)
 
 
 @app.get("/")

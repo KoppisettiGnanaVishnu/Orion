@@ -9,6 +9,10 @@ class HostedZoneCreate(BaseModel):
 class HostedZoneUpdate(BaseModel):
     name: str
     comment: str
+    
+class HostedZoneUpdate(BaseModel):
+    name: str
+    comment: str
 
 
 class HostedZoneResponse(BaseModel):

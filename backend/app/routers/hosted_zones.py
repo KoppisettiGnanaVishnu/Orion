@@ -99,6 +99,37 @@ def update_hosted_zone(
     return zone
 
 
+@router.put(
+    "/{zone_id}",
+    response_model=HostedZoneResponse
+)
+def update_hosted_zone(
+    zone_id: int,
+    zone_data: HostedZoneUpdate,
+    db: Session = Depends(get_db)
+):
+    zone = (
+        db.query(HostedZone)
+        .filter(
+            HostedZone.id == zone_id
+        )
+        .first()
+    )
+
+    if not zone:
+        raise HTTPException(
+            status_code=404,
+            detail="Hosted Zone not found"
+        )
+
+    zone.name = zone_data.name
+    zone.comment = zone_data.comment
+
+    db.commit()
+    db.refresh(zone)
+
+    return zone
+
 @router.delete("/{zone_id}")
 def delete_hosted_zone(
     zone_id: int,
