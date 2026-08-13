@@ -276,7 +276,7 @@ orion/
 ### Clone Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Orion.git
+git clone https://github.com/KoppisettiGnanaVishnu/Orion.git
 
 cd Orion
 ```
