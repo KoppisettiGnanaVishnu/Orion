@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Sidebar() {
   return (
-    <aside className="w-64 min-h-screen bg-slate-900 text-white p-6">
+    <aside className="w-64 min-h-screen bg-[#071329] text-white p-6">
       <h2 className="text-xl font-bold mb-8">
         Orion DNS
       </h2>

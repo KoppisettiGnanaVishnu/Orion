@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import ThemeToggle from "@/components/ThemeToggle";
 
 import api from "@/lib/api";
 import Sidebar from "@/components/Sidebar";
@@ -343,36 +344,40 @@ const updateZone = async () => {
 }
 
   return (
-    <div className="flex bg-slate-50 min-h-screen">
+    <div className="flex min-h-screen bg-slate-50 dark:bg-[#020617] transition-colors">
       <Sidebar />
 
       <div className="flex-1">
         {/* Header */}
         <div className="bg-slate-900 text-white">
-          <div className="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
-            <h1 className="text-2xl font-bold">
-              Orion DNS Manager
-            </h1>
+  <div className="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
+    
+    <h1 className="text-2xl font-bold">
+      Orion DNS Manager
+    </h1>
 
-            <div className="flex items-center gap-4">
-  <div className="text-sm text-slate-300">
-    AWS Route53 Clone
+    <div className="flex items-center gap-4">
+      <div className="text-sm text-slate-300">
+        AWS Route53 Clone
+      </div>
+
+      <ThemeToggle />
+
+      <Button
+        variant="destructive"
+        onClick={handleLogout}
+      >
+        Logout
+      </Button>
+    </div>
+
   </div>
-
-  <Button
-    variant="destructive"
-    onClick={handleLogout}
-  >
-    Logout
-  </Button>
 </div>
-          </div>
-        </div>
 
-        <div className="max-w-7xl mx-auto px-8 py-8">
-          <div className="text-sm text-slate-500 mb-4">
-            Route53 / Hosted Zones
-          </div>
+        <div className="max-w-7xl mx-auto px-8 py-8 text-slate-900 dark:text-white">
+          <div className="text-sm text-slate-400 mb-4">
+  AWS Route53 / Hosted Zones
+</div>
 
           {/* Notifications */}
           {notification && (
@@ -388,30 +393,47 @@ const updateZone = async () => {
             </div>
           )}
           {editingZoneId && (
-  <Card className="mb-6">
+  <Card
+  className="
+    mb-6
+    bg-white
+    dark:bg-slate-900
+    dark:border-slate-800
+  "
+>
     <CardContent className="p-6 space-y-4">
-      <h3 className="text-xl font-bold">
+     <h3 className="text-xl font-bold text-slate-900 dark:text-white">
         Edit Hosted Zone
       </h3>
 
       <Input
-        value={editZoneName}
-        onChange={(e) =>
-          setEditZoneName(
-            e.target.value
-          )
-        }
-      />
-
+  className="
+    bg-white
+    dark:bg-slate-800
+    dark:border-slate-700
+    dark:text-white
+  "
+  value={editZoneName}
+  onChange={(e) =>
+    setEditZoneName(
+      e.target.value
+    )
+  }
+/>
       <Input
-        value={editZoneComment}
-        onChange={(e) =>
-          setEditZoneComment(
-            e.target.value
-          )
-        }
-      />
-
+  className="
+    bg-white
+    dark:bg-slate-800
+    dark:border-slate-700
+    dark:text-white
+  "
+  value={editZoneComment}
+  onChange={(e) =>
+    setEditZoneComment(
+      e.target.value
+    )
+  }
+/>
       <div className="flex gap-2">
         <Button
           onClick={updateZone}
@@ -435,18 +457,27 @@ const updateZone = async () => {
           {/* Hero */}
           <div className="rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8 mb-8 shadow-lg">
             <h2 className="text-3xl font-bold mb-2">
-              DNS Management Dashboard
+             Hosted Zones Dashboard
             </h2>
 
             <p className="text-blue-100">
-              Manage Hosted Zones and DNS
-              Records just like AWS Route53.
+              Manage DNS routing, records, and hosted zones with Route53-inspired controls.
             </p>
           </div>
 
           {/* Stats */}
           <div className="grid md:grid-cols-4 gap-6 mb-6">
-            <Card className="shadow-md border-0">
+           <Card
+  className="
+    shadow-md
+    bg-white
+    dark:bg-slate-900
+    dark:border-slate-700
+    transition-all
+    hover:shadow-xl
+    hover:-translate-y-1
+  "
+>
               <CardContent className="p-6">
                 <p className="text-gray-500 text-sm">
                   Hosted Zones
@@ -458,7 +489,17 @@ const updateZone = async () => {
               </CardContent>
             </Card>
 
-            <Card className="shadow-md border-0">
+            <Card
+  className="
+    shadow-md
+    bg-white
+    dark:bg-slate-900
+    dark:border-slate-700
+    transition-all
+    hover:shadow-xl
+    hover:-translate-y-1
+  "
+>
               <CardContent className="p-6">
                 <p className="text-gray-500 text-sm">
                   DNS Records
@@ -470,7 +511,17 @@ const updateZone = async () => {
               </CardContent>
             </Card>
 
-            <Card className="shadow-md border-0">
+            <Card
+  className="
+    shadow-md
+    bg-white
+    dark:bg-slate-900
+    dark:border-slate-700
+    transition-all
+    hover:shadow-xl
+    hover:-translate-y-1
+  "
+>
               <CardContent className="p-6">
                 <p className="text-gray-500 text-sm">
                   System Status
@@ -482,7 +533,17 @@ const updateZone = async () => {
               </CardContent>
             </Card>
 
-            <Card className="shadow-md border-0">
+            <Card
+  className="
+    shadow-md
+    bg-white
+    dark:bg-slate-900
+    dark:border-slate-700
+    transition-all
+    hover:shadow-xl
+    hover:-translate-y-1
+  "
+>
               <CardContent className="p-6">
                 <p className="text-gray-500 text-sm">
                   Last Updated
@@ -496,9 +557,18 @@ const updateZone = async () => {
           </div>
 
           {/* Create Hosted Zone */}
-          <Card className="shadow-md mb-8">
+          <Card
+  className="
+    shadow-md
+    mb-8
+    bg-white
+    dark:bg-slate-900
+    dark:border-slate-800
+    transition-colors
+  "
+>
             <CardContent className="p-6">
-              <h3 className="text-xl font-semibold mb-5">
+              <h3 className="text-xl font-semibold mb-5 text-slate-900 dark:text-white">
                 Create Hosted Zone
               </h3>
 
@@ -522,9 +592,14 @@ const updateZone = async () => {
                 />
 
                 <Button
-                  onClick={createZone}
-                  disabled={loading}
-                >
+  onClick={createZone}
+  disabled={loading}
+  className="
+    bg-orange-500
+    hover:bg-orange-600
+    text-white
+  "
+>
                   {loading
                     ? "Creating..."
                     : "Create Hosted Zone"}
@@ -534,17 +609,35 @@ const updateZone = async () => {
           </Card>
 
           {/* Hosted Zones */}
-          <Card className="shadow-md">
+          <Card
+  className="
+    shadow-md
+    bg-white
+    dark:bg-slate-900
+    dark:border-slate-800
+    transition-colors
+  "
+>
             <CardContent className="p-6">
               <div className="flex justify-between items-center mb-5">
 
   <div className="flex items-center gap-3">
 
-    <h3 className="text-xl font-semibold">
+    <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
       Hosted Zones
     </h3>
 
-    <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs">
+    <span
+  className="
+    bg-blue-100
+    text-blue-700
+    dark:bg-blue-900
+    dark:text-blue-200
+    px-3 py-1
+    rounded-full
+    text-xs
+  "
+>
       {filteredZones.length}
     </span>
 
