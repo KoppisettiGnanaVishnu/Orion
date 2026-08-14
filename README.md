@@ -12,8 +12,7 @@ Orion DNS enables users to create and manage hosted zones, configure DNS records
 
 > This project uses SQLite as required by the assignment. The application is deployed on free-tier cloud infrastructure for demonstration purposes. In some cases, backend redeployments may reset application data, resulting in an empty dashboard on first visit. All functionality remains fully operational, and reviewers can create Hosted Zones, DNS Records, and Health Checks directly through the interface.
 
-## Live Demo
-
+## Live Demo & Documentation
 ### Frontend
 
 https://orion-lyart-phi.vercel.app/
@@ -551,7 +550,7 @@ https://github.com/KoppisettiGnanaVishnu
 
 LinkedIn:
 
-https://www.linkedin.com/in/koppisetti-gnana-vishnu
+https://www.linkedin.com/in/vishnugnana/
 
 ---
 
