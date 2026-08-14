@@ -1,37 +1,18 @@
 # Orion DNS
 
-A production-ready DNS Management Platform inspired by AWS Route 53, built using FastAPI, Next.js, SQLite, and ShadCN UI.
+A production-ready DNS Management Platform inspired by AWS Route 53, built using FastAPI, Next.js, SQLite, TypeScript, Tailwind CSS, and ShadCN UI.
 
 Orion DNS enables users to create and manage hosted zones, configure DNS records, monitor endpoint health, and visualize DNS infrastructure through a modern cloud-native interface.
 
 ---
 
-## Why Orion DNS?
+## Live Demo
 
-DNS is one of the most critical services powering the modern internet. Every application, website, API, and cloud service depends on reliable DNS infrastructure.
-
-Orion DNS was built as a functional Route53-inspired platform to explore how DNS systems work behind the scenes while providing a complete full-stack cloud application experience.
-
-This project demonstrates:
-
-- REST API Design
-- Database Modeling
-- Frontend-Backend Integration
-- Cloud Deployment
-- DNS Infrastructure Concepts
-- Production-Ready Architecture
-
-Rather than building a simple CRUD application, Orion DNS simulates real-world cloud DNS workflows similar to AWS Route 53.
-
----
-
-## Live Deployment
-
-### Frontend (Vercel)
+### Frontend
 
 https://orion-lyart-phi.vercel.app/
 
-### Backend API (Render)
+### Backend API
 
 https://orion-api-e0cc.onrender.com
 
@@ -77,30 +58,79 @@ Supported Record Types:
 - Infrastructure Overview
 - Total Hosted Zones
 - Total DNS Records
-- Total Health Checks
 - Real-Time Statistics
+- System Status Monitoring
 
 ### Health Checks
 
-- Create Health Checks
-- Monitor Endpoint Availability
+- Endpoint Availability Monitoring
 - Health Status Tracking
 - Health Check Management
 
 ### Authentication
 
-- Login Page
+- Secure Login
 - Protected Routes
-- Session-Based Access
+- Session Management
 
 ### User Experience
 
 - Responsive Design
-- Modern Dashboard
-- AWS Route53-Inspired Layout
+- Light/Dark Mode
+- AWS Route53-Inspired Interface
 - Search & Filtering
 - Notifications & Alerts
 - Sidebar Navigation
+
+---
+
+## Screenshots
+
+### Login Page
+
+![Login](./backend/screenshots/login-page.png)
+
+---
+
+### Dashboard (Light Mode)
+
+![Dashboard Light](./backend/screenshots/dashboard-light.png)
+
+---
+
+### Dashboard (Dark Mode)
+
+![Dashboard Dark](./backend/screenshots/dashboard-dark.png)
+
+---
+
+### Hosted Zones - All Zones
+
+![All Zones](./backend/screenshots/hosted-zones-all.png)
+
+---
+
+### Hosted Zones - Zones With Records
+
+![Zones With Records](./backend/screenshots/hosted-zones-with-records.png)
+
+---
+
+### Hosted Zones - Empty Zones
+
+![Empty Zones](./backend/screenshots/hosted-zones-empty.png)
+
+---
+
+### Hosted Zone Creation Success
+
+![Hosted Zone Created](./backend/screenshots/hosted-zone-created.png)
+
+---
+
+### DNS Records Management
+
+![DNS Records](./backend/screenshots/dns-records.png)
 
 ---
 
@@ -108,7 +138,7 @@ Supported Record Types:
 
 ```text
                         ┌─────────────────┐
-                        │     User        │
+                        │      User       │
                         └────────┬────────┘
                                  │
                                  ▼
@@ -178,8 +208,6 @@ Supported Record Types:
 | PUT | `/hosted-zones/{id}` |
 | DELETE | `/hosted-zones/{id}` |
 
----
-
 ### DNS Records
 
 | Method | Endpoint |
@@ -189,15 +217,11 @@ Supported Record Types:
 | PUT | `/records/{record_id}` |
 | DELETE | `/records/{record_id}` |
 
----
-
 ### Dashboard
 
 | Method | Endpoint |
 |----------|----------|
 | GET | `/dashboard/stats` |
-
----
 
 ### Health Checks
 
@@ -217,11 +241,21 @@ orion/
 ├── backend/
 │   │
 │   ├── app/
-│   │   ├── database.py
 │   │   ├── models/
 │   │   ├── routers/
 │   │   ├── schemas/
-│   │   └── utils/
+│   │   ├── services/
+│   │   └── database.py
+│   │
+│   ├── screenshots/
+│   │   ├── login-page.png
+│   │   ├── dashboard-light.png
+│   │   ├── dashboard-dark.png
+│   │   ├── hosted-zones-all.png
+│   │   ├── hosted-zones-with-records.png
+│   │   ├── hosted-zones-empty.png
+│   │   ├── hosted-zone-created.png
+│   │   └── dns-records.png
 │   │
 │   ├── requirements.txt
 │   └── run.py
@@ -229,14 +263,6 @@ orion/
 ├── frontend/
 │   │
 │   ├── app/
-│   │   ├── dashboard/
-│   │   ├── health-checks/
-│   │   ├── login/
-│   │   ├── resolver/
-│   │   ├── traffic-policies/
-│   │   ├── zone/
-│   │   └── page.tsx
-│   │
 │   ├── components/
 │   ├── lib/
 │   ├── public/
@@ -244,30 +270,6 @@ orion/
 │
 └── README.md
 ```
-
----
-
-## Screenshots
-
-### Login
-
-![Login](./frontend/public/screenshots/login.png)
-
-### Dashboard
-
-![Dashboard](./frontend/public/screenshots/dashboard.png)
-
-### Hosted Zones
-
-![Hosted Zones](./frontend/public/screenshots/hosted-zones.png)
-
-### DNS Records
-
-![DNS Records](./frontend/public/screenshots/zone-details.png)
-
-### Health Checks
-
-![Health Checks](./frontend/public/screenshots/health-checks.png)
 
 ---
 
@@ -280,8 +282,6 @@ git clone https://github.com/KoppisettiGnanaVishnu/Orion.git
 
 cd Orion
 ```
-
----
 
 ### Backend Setup
 
@@ -297,13 +297,13 @@ pip install -r requirements.txt
 python run.py
 ```
 
-Backend runs on:
+Backend runs at:
 
 ```text
 http://localhost:8000
 ```
 
-Swagger Documentation:
+Swagger Docs:
 
 ```text
 http://localhost:8000/docs
@@ -321,7 +321,7 @@ npm install
 npm run dev
 ```
 
-Frontend runs on:
+Frontend runs at:
 
 ```text
 http://localhost:3000
@@ -355,35 +355,36 @@ https://orion-api-e0cc.onrender.com/docs
 
 ---
 
-## Project Status
+## Current Status
 
-### Current Version
+### Version
 
 ```text
 v1.0.0
 ```
 
-### Completed
+### Completed Features
 
-- Hosted Zone CRUD
-- DNS Record CRUD
+- Hosted Zone CRUD Operations
+- DNS Record CRUD Operations
+- Authentication System
+- Dashboard Analytics
+- Search & Filtering
 - Health Checks
-- Dashboard APIs
-- Authentication
 - Frontend Deployment
 - Backend Deployment
 - API Documentation
-- Search & Filtering
+- Light/Dark Theme Support
 - Route53-Inspired UI
 
-### Planned Enhancements
+### Future Enhancements
 
 - Traffic Policies
 - Resolver Rules
 - Advanced Routing Strategies
-- Role-Based Access Control
-- Analytics Dashboard
+- RBAC (Role-Based Access Control)
 - Audit Logs
+- Analytics Dashboard
 - Monitoring & Metrics
 
 ---
@@ -393,14 +394,16 @@ v1.0.0
 This project helped explore:
 
 - FastAPI Backend Development
-- SQLAlchemy ORM
 - REST API Design
-- Frontend Architecture with Next.js
-- ShadCN UI Components
-- Database Relationships
+- SQLAlchemy ORM
+- SQLite Database Management
+- Next.js Full-Stack Development
+- TypeScript
+- ShadCN UI
+- Frontend-Backend Integration
 - Cloud Deployment Workflows
 - DNS Infrastructure Concepts
-- Full-Stack System Design
+- System Design Principles
 
 ---
 
@@ -411,7 +414,12 @@ This project helped explore:
 B.Tech Computer Science Engineering
 
 GitHub:
+
 https://github.com/KoppisettiGnanaVishnu
+
+LinkedIn:
+
+https://www.linkedin.com/in/koppisetti-gnana-vishnu
 
 ---
 
@@ -419,4 +427,4 @@ https://github.com/KoppisettiGnanaVishnu
 
 Inspired by AWS Route 53 and modern cloud infrastructure management platforms.
 
-Built as a full-stack engineering project to understand DNS systems, scalable API design, and production deployment workflows.
+Built as a full-stack engineering project to understand DNS systems, scalable API design, cloud deployment, and production-grade application architecture.
