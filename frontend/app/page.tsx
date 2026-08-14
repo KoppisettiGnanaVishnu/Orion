@@ -337,9 +337,21 @@ const updateZone = async () => {
 
   if (checkingAuth) {
   return (
-    <div className="p-10">
-      Checking authentication...
-    </div>
+    <div className="flex min-h-screen items-center justify-center">
+  <div className="text-center">
+    <h2 className="text-2xl font-bold mb-2">
+      Orion DNS
+    </h2>
+
+    <p className="text-lg">
+      Initializing Services...
+    </p>
+
+    <p className="text-sm text-gray-500 mt-2">
+      The backend may take a few seconds to wake up after inactivity.
+    </p>
+  </div>
+</div>
   );
 }
 

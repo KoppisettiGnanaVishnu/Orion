@@ -296,9 +296,17 @@ const filteredRecords =
 
 if (checkingAuth) {
   return (
-    <div className="p-10">
-      Checking authentication...
-    </div>
+   <div className="flex min-h-screen items-center justify-center">
+  <div className="text-center">
+    <h2 className="text-2xl font-bold mb-2">
+      Loading Zone Details
+    </h2>
+
+    <p className="text-sm text-gray-500">
+      Fetching DNS records and hosted zone information...
+    </p>
+  </div>
+</div>
   );
 }
 
