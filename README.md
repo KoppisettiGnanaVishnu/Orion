@@ -170,6 +170,109 @@ Supported Record Types:
                   └──────────────────────────┘
 ```
 
+## Database Schema
+
+Orion DNS uses **SQLite** with **SQLAlchemy ORM** to persist application data. The database is designed around Hosted Zones, DNS Records, Authentication, and Health Checks.
+
+### Entity Relationship Diagram
+
+```text
+┌──────────────┐
+│    Users     │
+└──────────────┘
+id (PK)
+username
+password
+created_at
+
+
+┌──────────────────┐
+│   Hosted Zones   │
+└──────────────────┘
+id (PK)
+name
+description
+created_at
+
+         │
+         │ One-to-Many
+         ▼
+
+┌──────────────────┐
+│   DNS Records    │
+└──────────────────┘
+id (PK)
+zone_id (FK)
+name
+type
+value
+ttl
+created_at
+
+
+┌──────────────────┐
+│  Health Checks   │
+└──────────────────┘
+id (PK)
+name
+endpoint
+status
+last_checked
+created_at
+```
+
+### Relationships
+
+#### Hosted Zone → DNS Records
+
+A Hosted Zone can contain multiple DNS Records.
+
+```text
+Hosted Zone (1)
+      │
+      ▼
+DNS Records (Many)
+```
+
+Example:
+
+```text
+oriondns.dev
+├── A      → 1.1.1.1
+├── CNAME  → www.oriondns.dev
+├── MX     → mail.oriondns.dev
+└── TXT    → verification-token
+```
+
+### Database Tables
+
+| Table | Description |
+|---------|------------|
+| Users | Stores authentication and user session information |
+| Hosted Zones | Stores DNS hosted zones managed by users |
+| DNS Records | Stores DNS entries associated with hosted zones |
+| Health Checks | Stores endpoint monitoring configurations and status |
+
+### ORM Architecture
+
+```text
+FastAPI
+    │
+    ▼
+SQLAlchemy ORM
+    │
+    ▼
+SQLite Database
+```
+
+### Benefits
+
+- Persistent storage using SQLite
+- SQLAlchemy relationship management
+- Clean separation between models, schemas, and API routes
+- Easy migration path to PostgreSQL or MySQL
+- Scalable database design inspired by cloud DNS platforms
+
 ---
 
 ## Tech Stack
