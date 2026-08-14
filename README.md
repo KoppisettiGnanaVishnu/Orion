@@ -6,7 +6,10 @@ Orion DNS enables users to create and manage hosted zones, configure DNS records
 
 ---
 > **Note**
->
+### Application Startup
+
+> The frontend is hosted on Vercel and the backend is hosted on Render (Free Tier).If the application has been inactive for some time, the backend service may take up to 30 seconds to wake up on the first request. During this time, the application displays a loading screen and will automatically continue once the backend becomes available.
+
 > This project uses SQLite as required by the assignment. The application is deployed on free-tier cloud infrastructure for demonstration purposes. In some cases, backend redeployments may reset application data, resulting in an empty dashboard on first visit. All functionality remains fully operational, and reviewers can create Hosted Zones, DNS Records, and Health Checks directly through the interface.
 
 ## Live Demo
@@ -15,6 +18,13 @@ Orion DNS enables users to create and manage hosted zones, configure DNS records
 
 https://orion-lyart-phi.vercel.app/
 
+### Test Credentials
+
+```text
+Username: admin
+Password: admin123
+```
+
 ### Backend API
 
 https://orion-api-e0cc.onrender.com
@@ -22,6 +32,16 @@ https://orion-api-e0cc.onrender.com
 ### Swagger Documentation
 
 https://orion-api-e0cc.onrender.com/docs
+
+### Recommended Evaluation Flow
+
+1. Login to the application.
+2. Create a Hosted Zone.
+3. Create DNS Records within the Hosted Zone.
+4. Verify Search and Filtering.
+5. Verify Edit and Delete operations.
+6. Review Dashboard Statistics.
+7. Review Swagger API Documentation.
 
 ---
 
