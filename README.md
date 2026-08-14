@@ -84,23 +84,59 @@ Supported Record Types:
 
 ---
 
-![Login](backend/screenshots/01-login-page.png)
+## Screenshots
+
+### 1. Login Page
+
+![Login Page](backend/screenshots/01-login-page.png)
+
+---
+
+### 2. Dashboard (Light Mode)
 
 ![Dashboard Light](backend/screenshots/02-dashboard-light.png)
 
+---
+
+### 3. Dashboard (Dark Mode)
+
 ![Dashboard Dark](backend/screenshots/03-dashboard-dark.png)
+
+---
+
+### 4. Success Notification
+
+![Success Message](backend/screenshots/4-success-message.png)
+
+---
+
+### 5. Hosted Zones List
 
 ![Hosted Zones](backend/screenshots/05-hosted-zones-list.png)
 
+---
+
+### 6. Hosted Zones with DNS Records
+
 ![Zones With Records](backend/screenshots/06-zones-with-records-filter.png)
+
+---
+
+### 7. Empty Zone Filter
 
 ![Empty Zones](backend/screenshots/07-empty-zones-filter.png)
 
-![DNS Records MyApp](backend/screenshots/08-dns-records-myapp-io.png)
+---
+
+### 8. DNS Records – MyApp
+
+![DNS Records MyApp](backend/screenshots/08-dns-records-myapp_io.png)
+
+---
+
+### 9. DNS Records – OrionDNS
 
 ![DNS Records OrionDNS](backend/screenshots/09-dns-records-oriondns.png)
-
-![Success Message](backend/screenshots/10-success-message.png)
 
 ---
 
