@@ -84,53 +84,23 @@ Supported Record Types:
 
 ---
 
-## Screenshots
+![Login](backend/screenshots/01-login-page.png)
 
-### Login Page
+![Dashboard Light](backend/screenshots/02-dashboard-light.png)
 
-![Login](./backend/screenshots/login-page.png)
+![Dashboard Dark](backend/screenshots/03-dashboard-dark.png)
 
----
+![Hosted Zones](backend/screenshots/05-hosted-zones-list.png)
 
-### Dashboard (Light Mode)
+![Zones With Records](backend/screenshots/06-zones-with-records-filter.png)
 
-![Dashboard Light](./backend/screenshots/dashboard-light.png)
+![Empty Zones](backend/screenshots/07-empty-zones-filter.png)
 
----
+![DNS Records MyApp](backend/screenshots/08-dns-records-myapp-io.png)
 
-### Dashboard (Dark Mode)
+![DNS Records OrionDNS](backend/screenshots/09-dns-records-oriondns.png)
 
-![Dashboard Dark](./backend/screenshots/dashboard-dark.png)
-
----
-
-### Hosted Zones - All Zones
-
-![All Zones](./backend/screenshots/hosted-zones-all.png)
-
----
-
-### Hosted Zones - Zones With Records
-
-![Zones With Records](./backend/screenshots/hosted-zones-with-records.png)
-
----
-
-### Hosted Zones - Empty Zones
-
-![Empty Zones](./backend/screenshots/hosted-zones-empty.png)
-
----
-
-### Hosted Zone Creation Success
-
-![Hosted Zone Created](./backend/screenshots/hosted-zone-created.png)
-
----
-
-### DNS Records Management
-
-![DNS Records](./backend/screenshots/dns-records.png)
+![Success Message](backend/screenshots/10-success-message.png)
 
 ---
 
