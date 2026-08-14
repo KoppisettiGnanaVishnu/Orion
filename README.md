@@ -13,11 +13,13 @@ Orion DNS enables users to create and manage hosted zones, configure DNS records
 >
 > This project uses SQLite as required by the assignment specification. Because the backend is deployed on free-tier cloud infrastructure, backend redeployments may occasionally recreate the SQLite database file, resulting in an empty dashboard. All functionality remains fully operational, and reviewers can create Hosted Zones, DNS Records, and Health Checks directly through the interface.
 
+
+
 ## Live Demo & Documentation
 
-### Frontend
-
-🌐 [Orion DNS Application](https://orion-lyart-phi.vercel.app/)
+- 🌐 **Frontend:** [Orion DNS Application](https://orion-lyart-phi.vercel.app/)
+- ⚙️ **Backend API:** [Backend Service](https://orion-api-e0cc.onrender.com)
+- 📘 **Swagger Docs:** [API Documentation](https://orion-api-e0cc.onrender.com/docs)
 
 ### Test Credentials
 
@@ -25,14 +27,6 @@ Orion DNS enables users to create and manage hosted zones, configure DNS records
 Username: admin
 Password: admin123
 ```
-
-### Backend API
-
-⚙️ [Backend Service](https://orion-api-e0cc.onrender.com)
-
-### Swagger Documentation
-
-📘 [API Documentation](https://orion-api-e0cc.onrender.com/docs)
 
 ### Recommended Evaluation Flow
 
